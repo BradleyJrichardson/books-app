@@ -11,7 +11,7 @@
         <div class="index-page-nav-links">
             <button><%= link_to "show", book %></button>
           <% if can? :delete, book %>
-            <button><%= link_to "delete", update_book_path(book), method: :delete %></button>
+            <button><%= link_to "delete", book_path(book.id), method: :delete %></button>
           <% end %>
         </div>
       </div>

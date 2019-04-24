@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-  <%= form_for @book, url: books_create_path,html: {class: "edit-form"}, :action => "create" do |f| %>
+  <%= form_for @book, url: books_path ,html: {class: "edit-form"}, :action => "create" do |f| %>
     <%= f.label :title %>
     <%= f.text_field :title %>
 

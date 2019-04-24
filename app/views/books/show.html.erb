@@ -3,9 +3,10 @@
   <hr>
   <p>Author: <%=link_to  @book.author.name.upcase, author_path(@book.author) %></p>
   <p>Genre: <%= @book.description %></p>
+  <%= render "layouts/shared/stripe_form" %>
   <% if can? :update, @book %>
-    <%= link_to "edit", edit_book_path(@book) %> |
-    <%= link_to "delete", update_book_path(@book), method: :delete %>
+    <%= link_to "edit", edit_book_path(@book.id) %> |
+    <%= link_to "delete", book_path(@book.id), method: :delete %>
   <% end %>
   <hr>
   <% unless @book.reviews.nil? %>
@@ -15,14 +16,14 @@
       <h6>Posted on: <%= review.created_at.strftime("%Y-%m-%d") %></h6>
       <p><%= review.review %></p>
       <% if can? :delete, review %>
-          <button><%= link_to "delete", delete_review_path(review), method: :delete %></button>
+          <button><%= link_to "delete", book_path(@book.id), method: :delete %></button>
       <% end %>
       <hr>
     <% end %>
   <% end %>
   <% if user_signed_in? %>
     <h4>Leave a review!</h4>
-    <%= form_for(@review, url: create_review_path) do |f| %>
+    <%= form_for(@review, url: new_review_path) do |f| %>
       <%= f.label :title %>
       <%= f.text_field :title %>
 
