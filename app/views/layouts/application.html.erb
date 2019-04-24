@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rails01</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+    <h1> Books </h1>
+    <li><%= link_to "Home", books_path %><li>
+    <% if user_signed_in? %>
+        <li>
+          <ul>
+            <% if can? :create, Book %>
+              <li><%= link_to "Add a new book", books_new_path %><li>
+            <% end %>
+
+            <li><%= link_to 'Profile', edit_user_registration_path %></li>
+            <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+          </ul>
+          <li><%= current_user.email  %>, you are currently signed in</li>
+        </li>
+      <% else %>
+        <li><%= link_to 'Log In', new_user_session_path %></li>
+        <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+      <% end %>
+  </header>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+.edit-form {
+  margin: 5% 9%;
+  padding: 10px;
+}
+
+input, textarea, label, select {
+  width: 100%;
+  padding: 5px;
+}
+
+input, textarea, select {  border: 1px #e6e3e3 solid; }
+
+select { height: 40px }
+.submit {
+  margin-top: 10px;
+  width: 180px;
+}

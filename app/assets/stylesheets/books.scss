@@ -1,0 +1,40 @@
+// Place all the styles related to the books controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap";
+
+header {
+  border-bottom: 1px solid rgb(214, 214, 214);
+  padding: 20px 13vw;
+}
+
+.bookshelf p {
+  margin: 0;
+}
+.bookshelf {
+  display:flex;
+  flex-wrap: wrap;
+  margin: 0px 100px;
+  justify-content:center;
+}
+
+.book-card{
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+  width: 300px;
+  background: rgb(255, 187, 0);
+  margin: 2px;
+  padding: 0px 20px;
+  // border: 2px black solid;
+}
+.book-card h4 {
+  margin-top: 30px;
+}
+.book-description {
+  padding-top: 10px;
+  grid-row-start: 1;
+}
+.index-page-nav-links {
+  grid-row-start: 2;
+  align-self: center;
+}

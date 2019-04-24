@@ -1,0 +1,12 @@
+<%= form_for @book, url: update_book_path(@book), html: {class: "edit-form"},:action => "update" do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :author %>
+  <%= select_tag "name", options_for_select(Author.all.collect{ |u| [u.name] }) %>
+
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+
+  <%= f.submit 'Update book', class: 'btn btn-primary' %>
+<% end %>

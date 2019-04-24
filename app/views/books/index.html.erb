@@ -1,0 +1,20 @@
+<div class="index-page">
+  <div class="bookshelf">
+    <% @books.each do |book| %>
+      <div class="book-card bg-light">
+        <div class="book-description">
+          <h4> <%= book.title %></h4>
+          <h5>by <%= book.author.name %></h5>
+          <p> Genre: <%= book.description %></p>
+          <p> Rating: <%= book.rating %></p>
+        </div>
+        <div class="index-page-nav-links">
+            <button><%= link_to "show", book %></button>
+          <% if can? :delete, book %>
+            <button><%= link_to "delete", update_book_path(book), method: :delete %></button>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

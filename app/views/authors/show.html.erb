@@ -1,0 +1,11 @@
+<div class="show-page">
+  <h6>books by</h6>
+  <h1><%= @author.name %></h1>
+  <hr>
+  <% @author.books.each do |book| %>
+    <p><%= link_to "#{book.title}", book %></p>
+  <% end %>
+  <% if can? :delete, :all  %>
+    <%= link_to "Delete Author", delete_author_path(@author), method: :delete %>
+  <% end %>
+</div>

@@ -1,0 +1,16 @@
+<% if user_signed_in? %>
+  <%= form_for @book, url: books_create_path,html: {class: "edit-form"}, :action => "create" do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+
+    <%= f.label :author %>
+    <%= select_tag "name", options_for_select(Author.all.collect{ |u| [u.name] }) %>
+
+    <%= f.label :description, 'Genre' %>
+    <%= f.text_field :description %>
+
+    <%= f.submit 'Create book', class: 'btn btn-primary' %>
+  <% end %>
+<% else %>
+  <h1 class= "edit-form">Please sign in </h1>
+<% end %>

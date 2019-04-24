@@ -1,0 +1,10 @@
+<label>Book title:</label><br>
+<%= text_field_tag :title, @book.title %><br>
+
+<label>Author</label><br>
+<%= text_area_tag :author_id, "" %><br>
+
+<label>Book description</label><br>
+<%= text_area_tag :description, "" %><br>
+
+<%= submit_tag "Submit Post", class: "btn btn-dark submit" %>

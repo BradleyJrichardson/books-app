@@ -1,0 +1,40 @@
+<div class="show-page">
+  <h2><%= @book.title %></h2>
+  <hr>
+  <p>Author: <%=link_to  @book.author.name.upcase, author_path(@book.author) %></p>
+  <p>Genre: <%= @book.description %></p>
+  <% if can? :update, @book %>
+    <%= link_to "edit", edit_book_path(@book) %> |
+    <%= link_to "delete", update_book_path(@book), method: :delete %>
+  <% end %>
+  <hr>
+  <% unless @book.reviews.nil? %>
+    <h4>Reviews</h4>
+    <% @book.reviews.each do | review |%>
+      <h5>Title: <%= review.title%> </h5>
+      <h6>Posted on: <%= review.created_at.strftime("%Y-%m-%d") %></h6>
+      <p><%= review.review %></p>
+      <% if can? :delete, review %>
+          <button><%= link_to "delete", delete_review_path(review), method: :delete %></button>
+      <% end %>
+      <hr>
+    <% end %>
+  <% end %>
+  <% if user_signed_in? %>
+    <h4>Leave a review!</h4>
+    <%= form_for(@review, url: create_review_path) do |f| %>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+
+      <%= f.label :review %>
+      <%= f.text_field :review %>
+      <%= hidden_field_tag(:book_id, @book.id) %>
+      <%= f.submit 'Submit', class: 'btn btn-primary'%>
+    <% end %>
+  <% else %>
+    <h4>Please sign in to leave a review</h4>
+    <%= link_to 'Log In', new_user_session_path %> |
+    <%= link_to 'Sign Up', new_user_registration_path %>
+  <% end %>
+  </div>
+</div>
