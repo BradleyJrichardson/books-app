@@ -17,14 +17,18 @@ class BooksController < ApplicationController
   end
 
   def create
-    unless current_user.nil?
-      @author = Author.all.find_by(name: params[:name])
-      @book = Book.new(book_params)
-      @book.author_id = @author.id
-      @book.save
+    @author_exists = Author.all.find_by(name: params[:author])
+    @author = @author_exists.nil? ? Author.create(name: params[:book][:author]) : @author_exists
+    # binding.pry
 
-      redirect_to root_path
-    end
+    @book = Book.new(book_params)
+    @book.author_id = @author.id
+    @book.save
+
+    # New Book was created. Now send email alerting me. 
+    @user = current_user
+    BookMailer.with(user: @user).new_book_email.deliver_now
+    redirect_to root_path
   end
   
   def edit
